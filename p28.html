@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="demo">
+<h1>The XMLHttpRequest Example</h1>
+<button type="button" onclick="loadDoc()">Change Content</button>
+
+
+<table border="2px">
+<tr><td>Student Name</td><td id="tdname"> </td></tr>
+<tr><td>Student No</td><td id="tdno"> </td></tr>
+<tr><td>Student Gen</td><td id="tdgen"> </td></tr>
+<tr><td>Student Category</td><td id="tdcat"> </td></tr>
+</table>
+</div>
+
+<script>
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var res=this.responseText;
+	  var myobj=JSON.parse(res);
+	  document.getElementById("tdname").innerHTML=myobj.sname;
+	   document.getElementById("tdno").innerHTML=myobj.sno;
+    }
+  };
+  xhttp.open("GET", "ajax_info.txt", true);
+  xhttp.send();
+}
+</script>
+
+</body>
+</html>
